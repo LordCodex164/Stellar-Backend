@@ -48,15 +48,15 @@ const ProposalSchema = new mongoose.Schema({
   }
 });
 
-ProposalSchema.methods.hasExpired = function () {
-  return new Date > this.deadline
-}
+// ProposalSchema.methods.hasExpired = function () {
+//   return new Date > this.deadline
+// }
 
-ProposalSchema.pre("save", function(this:ProposalDocument, next) {
-  if(this.hasExpired() && this.status == "active"){
-    this.status = "expired"
-  }
-  next()
-})
+// ProposalSchema.pre("save", function(this:ProposalDocument, next) {
+//   if(this.hasExpired() && this.status == "active"){
+//     this.status = "expired"
+//   }
+//   next()
+// })
 
  export default mongoose.model<ProposalDocument>('Proposal', ProposalSchema);
