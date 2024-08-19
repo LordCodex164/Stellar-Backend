@@ -4,7 +4,7 @@ const Proposal = require('./models/Proposal');
 // Run every hour
 
 export function scheduleExpiredProposals() {
-  cron.schedule('0 * * * *', async () => {
+  cron.schedule('*/5 * * * *', async () => {
     const expiredProposals = await Proposal.find({ status: 'active', deadline: { $lt: new Date() } });
     
     for (let proposal of expiredProposals) {
