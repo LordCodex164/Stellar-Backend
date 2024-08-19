@@ -4,7 +4,8 @@
   "description": "",
   "main": "dis/src/server.js",
   "scripts": {
-    "dev": "node dist/src/server.js"
+    "dev": "node dist/src/server.js",
+    "prestart": "npm run build"
   },
   "author": "",
   "license": "ISC",
