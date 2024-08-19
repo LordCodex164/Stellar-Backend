@@ -5,6 +5,7 @@ import dotenv from "dotenv"
 import voting from "./routes/vote"
 import payment from "./routes/payments"
 import cors from "cors"
+import { scheduleExpiredProposals } from "./lib/cron"
 
 dotenv.config()
 
@@ -40,6 +41,8 @@ const PORT = process.env.PORT || 5000
 app.get("/", (req, res) => {
     res.status(200).json("testing") 
 })
+
+scheduleExpiredProposals()
 
 app.use("/api/v1/proposal", proposal)
 app.use("/api/v1/vote", voting)
