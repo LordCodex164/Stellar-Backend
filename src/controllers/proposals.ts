@@ -18,7 +18,6 @@ const createProposal = async (req:Request, res: Response) => {
             creator: publicKey
         })
         await proposal.save()
-        scheduleExpiredProposals()
         res.status(200).json(proposal)
     } catch (error) {
         console.log(error)
