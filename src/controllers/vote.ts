@@ -6,7 +6,7 @@ import vote from "../models/vote"
 const submitVote = async (req:Request, res: Response) => {
     try {
         const {proposalId, voter, transactionId, amount} = req.body
-        const proposal = await Proposal.find({creator: proposalId})
+        const proposal = await Proposal.findById(transactionId)
         if (!proposal) {
             return res.status(404).json({ message: 'Proposal not found' });
         }
