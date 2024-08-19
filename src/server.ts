@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
     cors({
-      origin: "http://localhost:5173",
+      origin: ["http://localhost:5173", ""],
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
       exposedHeaders: ["*"],
@@ -30,7 +30,7 @@ app.use(
       optionsSuccessStatus: 204,
     })
   );
-
+  
 app.use(cors());
 
 app.use(express.json())

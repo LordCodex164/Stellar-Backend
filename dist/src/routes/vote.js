@@ -6,5 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const vote_1 = require("../controllers/vote");
 const router = express_1.default.Router();
-router.route("/:id").post(vote_1.submitVote);
+router.route("/vote").post(vote_1.submitVote);
 exports.default = router;

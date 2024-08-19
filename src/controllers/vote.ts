@@ -11,12 +11,13 @@ const submitVote = async (req:Request, res: Response) => {
             return res.status(404).json({ message: 'Proposal not found' });
         }
         //await SubmitVote(secret, proposal?.publicKey)
-         await new vote({
+         const newVote = new vote({
             proposal: proposalId,
             voter,
             transactionId,
             amount
          })
+         await newVote.save()
         res.json({ message: 'Vote submitted successfully'})
     } catch (error) {
         console.log(error)

@@ -23,12 +23,13 @@ const submitVote = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             return res.status(404).json({ message: 'Proposal not found' });
         }
         //await SubmitVote(secret, proposal?.publicKey)
-        yield new vote_1.default({
+        const newVote = new vote_1.default({
             proposal: proposalId,
             voter,
             transactionId,
             amount
         });
+        yield newVote.save();
         res.json({ message: 'Vote submitted successfully' });
     }
     catch (error) {
