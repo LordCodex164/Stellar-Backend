@@ -2,7 +2,7 @@
   "name": "stellar-voting",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/src/server.js",
+  "main": "server.ts",
   "scripts": {
     "dev": "tsc && nodemon dist/src/server.js",
     "prestart": "npm run build",
