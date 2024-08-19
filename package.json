@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/src/server.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "tsc && node dist/src/server.js",
     "prestart": "npm run build"
   },
   "author": "",
