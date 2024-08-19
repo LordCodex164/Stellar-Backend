@@ -2,9 +2,9 @@
   "name": "stellar-voting",
   "version": "1.0.0",
   "description": "",
-  "main": "dis/src/server.js",
+  "main": "dist/src/server.js",
   "scripts": {
-    "dev": "node dist/src/server.js",
+    "dev": "nodemon",
     "prestart": "npm run build"
   },
   "author": "",
