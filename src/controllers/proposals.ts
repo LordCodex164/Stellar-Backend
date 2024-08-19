@@ -2,6 +2,7 @@
 import {CreateProposal, SubmitVote, streamPaymentEvent} from "../services/stellar"
 import Proposal from "../models/proposal"
 import {Request, Response } from "express"
+import { scheduleExpiredProposals } from "../lib/cron"
 
 const createProposal = async (req:Request, res: Response) => {
     try {
@@ -17,6 +18,7 @@ const createProposal = async (req:Request, res: Response) => {
             creator: publicKey
         })
         await proposal.save()
+        scheduleExpiredProposals()
         res.status(200).json(proposal)
     } catch (error) {
         console.log(error)

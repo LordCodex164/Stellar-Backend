@@ -1,4 +1,4 @@
-import mongoose, { MongooseOptions, Mongoose, } from "mongoose";
+import mongoose, { MongooseOptions, Mongoose, Document} from "mongoose";
 
 interface ProposalDocument extends Document {
   hasExpired: () => boolean;
@@ -48,8 +48,7 @@ const ProposalSchema = new mongoose.Schema({
   }
 });
 
-ProposalSchema.methods.hasExpired = function (this:ProposalDocument) {
-  console.log(this)
+ProposalSchema.methods.hasExpired = function () {
   return new Date > this.deadline
 }
 
