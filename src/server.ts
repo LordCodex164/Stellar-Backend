@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(
     cors({
-      origin: ["http://localhost:5173", ""],
+      origin: ["http://localhost:5173", "https://superb-torrone-c83f12.netlify.app"],
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
       exposedHeaders: ["*"],
