@@ -4,11 +4,11 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "tsc && nodemon dist/src/server.js",
+    "dev": "tsc && nodemon dist/src/server.js --watch",
     "prestart": "npm run build",
     "build": "tsc"
   },
-  "watchFiles": ["**/*.ts", "config.json"],
+  "watchFiles": ["./src/**/*.ts", "config.json"],
   "author": "",
   "license": "ISC",
   "dependencies": {

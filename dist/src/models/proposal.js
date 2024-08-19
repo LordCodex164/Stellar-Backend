@@ -46,7 +46,6 @@ const ProposalSchema = new mongoose_1.default.Schema({
     }
 });
 ProposalSchema.methods.hasExpired = function () {
-    console.log(this);
     return new Date > this.deadline;
 };
 ProposalSchema.pre("save", function (next) {

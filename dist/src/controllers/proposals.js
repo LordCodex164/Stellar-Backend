@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteProposal = exports.getAllProposal = exports.getProposalByCreator = exports.createProposal = void 0;
 const proposal_1 = __importDefault(require("../models/proposal"));
+const cron_1 = require("../lib/cron");
 const createProposal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { title, description, amount, publicKey, deadlineMinutes } = req.body;
@@ -28,6 +29,7 @@ const createProposal = (req, res) => __awaiter(void 0, void 0, void 0, function*
             creator: publicKey
         });
         yield proposal.save();
+        (0, cron_1.scheduleExpiredProposals)();
         res.status(200).json(proposal);
     }
     catch (error) {

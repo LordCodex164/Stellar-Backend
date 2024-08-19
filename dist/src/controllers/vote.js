@@ -18,7 +18,7 @@ const vote_1 = __importDefault(require("../models/vote"));
 const submitVote = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { proposalId, voter, transactionId, amount } = req.body;
-        const proposal = yield proposal_1.default.findById(req.params.id);
+        const proposal = yield proposal_1.default.find({ creator: proposalId });
         if (!proposal) {
             return res.status(404).json({ message: 'Proposal not found' });
         }

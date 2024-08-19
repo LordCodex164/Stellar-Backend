@@ -1,12 +1,11 @@
-const cron = require('node-cron');
-const Proposal = require('./models/Proposal');
-
+import cron from 'node-cron';
+import proposal from '../models/proposal';
 // Run every hour
 
 export function scheduleExpiredProposals() {
   cron.schedule('*/5 * * * *', async () => {
-    const expiredProposals = await Proposal.find({ status: 'active', deadline: { $lt: new Date() } });
-    
+    const expiredProposals = await proposal.find({ status: 'active', deadline: { $lt: new Date() } });
+    console.log(`Found ${expiredProposals.length} expired proposals`);
     for (let proposal of expiredProposals) {
       proposal.status = 'expired';
       await proposal.save();

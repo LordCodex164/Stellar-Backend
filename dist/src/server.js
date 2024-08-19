@@ -10,6 +10,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const vote_1 = __importDefault(require("./routes/vote"));
 const payments_1 = __importDefault(require("./routes/payments"));
 const cors_1 = __importDefault(require("cors"));
+const cron_1 = require("./lib/cron");
 dotenv_1.default.config();
 mongoose_1.default.connect(process.env.DATABASE_URL)
     .then(() => {
@@ -34,6 +35,7 @@ const PORT = process.env.PORT || 5000;
 app.get("/", (req, res) => {
     res.status(200).json("testing");
 });
+(0, cron_1.scheduleExpiredProposals)();
 app.use("/api/v1/proposal", proposals_1.default);
 app.use("/api/v1/vote", vote_1.default);
 app.use("/api/v1/payment", payments_1.default);

@@ -25,6 +25,7 @@ const VoteSchema = new mongoose.Schema({
       default: Date.now
     }
   });
+
   
   // Ensure a user can only vote once per proposal
   VoteSchema.index({ proposal: 1, voter: 1 }, { unique: true });
