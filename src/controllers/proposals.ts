@@ -17,6 +17,8 @@ const createProposal = async (req:Request, res: Response) => {
             creator: publicKey
         })
         await proposal.save()
+        //increment the proposal votes count in the document by 1 after saving
+        
         res.status(200).json(proposal)
     } catch (error) {
         console.log(error)
@@ -37,7 +39,6 @@ const getProposalByCreator = async (req:Request, res: Response) => {
   console.log(id)
     try {
       const proposal = await Proposal.find({creator: id});
-      console.log(proposal)
       if (!proposal) {
         return res.status(404).json({ message: 'Proposal not found' });
       }
