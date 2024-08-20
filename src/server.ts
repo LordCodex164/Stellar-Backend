@@ -21,7 +21,7 @@ const app = express()
 
 app.use(express.urlencoded({ extended: false }));
 
-const allowedOrigins = ['https://example1.com', 'https://example2.com', "https://superb-torrone-c83f12.netlify.app"];
+const allowedOrigins = ['https://example1.com', 'http://localhost:5173', "https://superb-torrone-c83f12.netlify.app"];
 
 app.use(
   cors({
