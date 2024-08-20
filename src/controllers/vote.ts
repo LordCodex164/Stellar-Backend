@@ -12,7 +12,6 @@ const submitVote = async (req:Request, res: Response) => {
         }
         //@ts-ignore
         proposal.votes += 1
-        //@ts-ignore
         await proposal.save()
         //await SubmitVote(secret, proposal?.publicKey)
          const newVote = new vote({
