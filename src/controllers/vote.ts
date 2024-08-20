@@ -11,7 +11,7 @@ const submitVote = async (req:Request, res: Response) => {
             return res.status(404).json({ message: 'Proposal not found' });
         }
         //@ts-ignore
-        proposal.vote += 1
+        proposal.votes += 1
         //await SubmitVote(secret, proposal?.publicKey)
          const newVote = new vote({
             proposal: proposalId,
