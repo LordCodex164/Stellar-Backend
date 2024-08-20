@@ -3,6 +3,6 @@ import { submitVote } from "../controllers/vote";
 
 const router = express.Router();
 
-router.route("/vote").post(submitVote)
+router.route("/").post(submitVote)
 
 export default router;
