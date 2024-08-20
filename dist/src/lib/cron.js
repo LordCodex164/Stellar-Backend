@@ -17,13 +17,11 @@ const node_cron_1 = __importDefault(require("node-cron"));
 const proposal_1 = __importDefault(require("../models/proposal"));
 // Run every hour
 function scheduleExpiredProposals() {
-    node_cron_1.default.schedule('*/5 * * * *', () => __awaiter(this, void 0, void 0, function* () {
+    node_cron_1.default.schedule('* * * * * *', () => __awaiter(this, void 0, void 0, function* () {
         const expiredProposals = yield proposal_1.default.find({ status: 'active', deadline: { $lt: new Date() } });
-        console.log(`Found ${expiredProposals.length} expired proposals`);
         for (let proposal of expiredProposals) {
             proposal.status = 'expired';
             yield proposal.save();
         }
-        console.log(`Updated ${expiredProposals.length} expired proposals`);
     }));
 }

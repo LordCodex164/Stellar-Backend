@@ -18,7 +18,6 @@ const createProposal = async (req:Request, res: Response) => {
         })
         await proposal.save()
         //increment the proposal votes count in the document by 1 after saving
-        
         res.status(200).json(proposal)
     } catch (error) {
         console.log(error)

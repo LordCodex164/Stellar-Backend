@@ -45,13 +45,13 @@ const ProposalSchema = new mongoose_1.default.Schema({
         required: true
     }
 });
-ProposalSchema.methods.hasExpired = function () {
-    return new Date > this.deadline;
-};
-ProposalSchema.pre("save", function (next) {
-    if (this.hasExpired() && this.status == "active") {
-        this.status = "expired";
-    }
-    next();
-});
+// ProposalSchema.methods.hasExpired = function () {
+//   return new Date > this.deadline
+// }
+// ProposalSchema.pre("save", function(this:ProposalDocument, next) {
+//   if(this.hasExpired() && this.status == "active"){
+//     this.status = "expired"
+//   }
+//   next()
+// })
 exports.default = mongoose_1.default.model('Proposal', ProposalSchema);

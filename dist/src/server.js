@@ -21,15 +21,30 @@ mongoose_1.default.connect(process.env.DATABASE_URL)
 });
 const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: false }));
+const allowedOrigins = ['https://example1.com', 'https://example2.com', "https://superb-torrone-c83f12.netlify.app"];
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:5173", ""],
+    origin: function (origin, callback) {
+        // allow requests with no origin
+        // (like mobile apps or curl requests)
+        if (!origin)
+            return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            return callback(null, true);
+        }
+        else {
+            return callback(null, false);
+        }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+}));
+app.use((0, cors_1.default)({
+    origin: ["http://localhost:5173", "https://superb-torrone-c83f12.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     exposedHeaders: ["*"],
     preflightContinue: false,
     optionsSuccessStatus: 204,
 }));
-app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 const PORT = process.env.PORT || 5000;
 app.get("/", (req, res) => {

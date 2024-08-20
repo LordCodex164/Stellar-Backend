@@ -10,6 +10,8 @@ const submitVote = async (req:Request, res: Response) => {
         if (!proposal) {
             return res.status(404).json({ message: 'Proposal not found' });
         }
+        //@ts-ignore
+        proposal.vote += 1
         //await SubmitVote(secret, proposal?.publicKey)
          const newVote = new vote({
             proposal: proposalId,
@@ -18,7 +20,11 @@ const submitVote = async (req:Request, res: Response) => {
             amount
          })
          await newVote.save()
-        res.json({ message: 'Vote submitted successfully'})
+            //increment the proposal votes count in the document by 1 after saving
+        //@ts-ignore
+        await proposal.save()
+
+        res.json({proposal, message: 'Vote submitted successfully'})
     } catch (error) {
         console.log(error)
     }
