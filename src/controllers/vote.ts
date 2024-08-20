@@ -23,7 +23,7 @@ const submitVote = async (req:Request, res: Response) => {
          await newVote.save()
             //increment the proposal votes count in the document by 1 after savin
 
-        res.json({proposal, message: 'Vote submitted successfully'})
+        res.json({message: 'Vote submitted successfully'})
     } catch (error) {
         console.log(error)
     }
