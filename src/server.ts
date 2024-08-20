@@ -21,6 +21,24 @@ const app = express()
 
 app.use(express.urlencoded({ extended: false }));
 
+const allowedOrigins = ['https://example1.com', 'https://example2.com', "https://superb-torrone-c83f12.netlify.app"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin
+      // (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        return callback(null, true);
+      } else {
+      return callback(null, false);
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  }
+  ));
+
 app.use(
     cors({
       origin: ["http://localhost:5173", "https://superb-torrone-c83f12.netlify.app"],
@@ -32,7 +50,6 @@ app.use(
     })
   );
 
-app.use(cors());
 
 app.use(express.json())
 
