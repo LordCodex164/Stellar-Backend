@@ -21,9 +21,7 @@ const submitVote = async (req:Request, res: Response) => {
             amount
          })
          await newVote.save()
-            //increment the proposal votes count in the document by 1 after saving
-        //@ts-ignore
-        await proposal.save()
+            //increment the proposal votes count in the document by 1 after savin
 
         res.json({proposal, message: 'Vote submitted successfully'})
     } catch (error) {
